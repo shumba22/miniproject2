@@ -1,10 +1,10 @@
 //Connects to the people table(Rugby Athletes)
 import express from "express";
-const people = express.Router();
+const People = express.Router();
 import pool from "./PoolConnection.js";
 
 // Retrieve all people
-people.get("/people", async (req, res) => {
+People.get("/people", async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM people");
         res.json({ rows: result.rows });
@@ -15,7 +15,7 @@ people.get("/people", async (req, res) => {
 });
 
 // Retrieve a specific person by ID
-people.get("/getpeople", async (req, res) => {
+People.get("/getpeople", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
@@ -29,7 +29,7 @@ people.get("/getpeople", async (req, res) => {
 });
 
 // Delete a specific person by ID
-people.get("/delpeople", async (req, res) => {
+People.get("/delpeople", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
@@ -43,7 +43,7 @@ people.get("/delpeople", async (req, res) => {
 });
 
 // Add a new person (POST request)
-people.post("/addperson", async (req, res) => {
+People.post("/addperson", async (req, res) => {
     try {
         var person = req.body;
         var name = person.name;
@@ -65,7 +65,7 @@ people.post("/addperson", async (req, res) => {
 });
 
 // Update an existing person information
-people.post("/updatePerson", async (req, res) => {
+People.post("/updatePerson", async (req, res) => {
     try {
         var person = req.body;
         var id = person.id; // Person's ID to update
@@ -87,4 +87,4 @@ people.post("/updatePerson", async (req, res) => {
     }
 });
 
-export default people;
+export default People;

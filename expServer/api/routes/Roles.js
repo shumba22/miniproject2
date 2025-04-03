@@ -1,6 +1,6 @@
 import express from "express";
 const roles = express.Router();
-import pool from "./PoolConnection.js";
+import pool from "./PoolConnections.js";
 
 // Retrieve all roles
 roles.get("/roles", async (req, res) => {
@@ -63,7 +63,7 @@ roles.post("/addrole", async (req, res) => {
     }
 });
 
-// Update an existing role's details (POST request)
+// Update an existing role's details - POST
 roles.post("/updateRole", async (req, res) => {
     try {
         var role = req.body;

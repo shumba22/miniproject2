@@ -1,10 +1,10 @@
 //Connect to the UserInfo table 
 import express from "express";
-const userInfo = express.Router();
+const UserInfo = express.Router();
 import pool from "./PoolConnection.js";
 
 // Retrieve all user information
-userInfo.get("/userinfo", async (req, res) => {
+UserInfo.get("/userinfo", async (req, res) => {
     try {
         const result = await pool.query("SELECT * FROM userinfo");
         res.json({ rows: result.rows });
@@ -15,7 +15,7 @@ userInfo.get("/userinfo", async (req, res) => {
 });
 
 // Retrieve a specific user by ID
-userInfo.get("/getuser", async (req, res) => {
+UserInfo.get("/getuser", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
@@ -29,7 +29,7 @@ userInfo.get("/getuser", async (req, res) => {
 });
 
 // Delete a specific user by ID
-userInfo.get("/deluser", async (req, res) => {
+UserInfo.get("/deluser", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
@@ -43,7 +43,7 @@ userInfo.get("/deluser", async (req, res) => {
 });
 
 // Add a new user 
-userInfo.post("/adduser", async (req, res) => {
+UserInfo.post("/adduser", async (req, res) => {
     try {
         var user = req.body;
         var name = user.name;
@@ -65,7 +65,7 @@ userInfo.post("/adduser", async (req, res) => {
 });
 
 // Update an existing user(their details)
-userInfo.post("/updateUser", async (req, res) => {
+UserInfo.post("/updateUser", async (req, res) => {
     try {
         var user = req.body;
         var id = user.id; // User's ID to update
@@ -87,4 +87,4 @@ userInfo.post("/updateUser", async (req, res) => {
     }
 });
 
-export default userInfo;
+export default UserInfo;
