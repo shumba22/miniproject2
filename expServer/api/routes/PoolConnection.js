@@ -19,4 +19,4 @@ pool
   })
   .catch((err) => console.error("Database connection error:", err.stack));
 //**/
-export default pool;
+export default PoolConnection;

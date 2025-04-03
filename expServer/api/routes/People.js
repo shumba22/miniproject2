@@ -1,12 +1,12 @@
 //Connects to the people table(Rugby Athletes)
 import express from "express";
 const People = express.Router();
-import pool from "./PoolConnection.js";
+import PoolConnection from "./PoolConnection.js";
 
 // Retrieve all people
 People.get("/people", async (req, res) => {
     try {
-        const result = await pool.query("SELECT * FROM people");
+        const result = await PoolConnection.query("SELECT * FROM people");
         res.json({ rows: result.rows });
     } catch (error) {
         console.error("Query error:", error);
@@ -19,7 +19,7 @@ People.get("/getpeople", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
-        const result = await pool.query("SELECT * FROM people WHERE id=$1", [id1]);
+        const result = await PoolConnection.query("SELECT * FROM people WHERE id=$1", [id1]);
         console.log(result);
         res.json({ rows: result.rows });
     } catch (error) {
@@ -33,7 +33,7 @@ People.get("/delpeople", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
-        const result = await pool.query("DELETE FROM people WHERE id=$1", [id1]);
+        const result = await PoolConnection.query("DELETE FROM people WHERE id=$1", [id1]);
         console.log(result);
         res.json({ ans: 1 });
     } catch (error) {
@@ -54,7 +54,7 @@ People.post("/addperson", async (req, res) => {
 
         // Query to insert a new person
         const qry = "INSERT INTO people (name, age, country, nationality, gender) VALUES ($1, $2, $3, $4, $5)";
-        const result = await pool.query(qry, [name, age, country, nationality, gender]);
+        const result = await PoolConnection.query(qry, [name, age, country, nationality, gender]);
 
         console.log(result);
         res.json({ ans: 1 });
@@ -77,7 +77,7 @@ People.post("/updatePerson", async (req, res) => {
 
         // Update query- Person/People
         const qry = "UPDATE people SET name=$1, age=$2, country=$3, nationality=$4, gender=$5 WHERE id=$6";
-        const result = await pool.query(qry, [name, age, country, nationality, gender, id]);
+        const result = await PoolConnection.query(qry, [name, age, country, nationality, gender, id]);
 
         console.log(result);
         res.json({ ans: 1 });

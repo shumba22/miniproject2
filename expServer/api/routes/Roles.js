@@ -1,11 +1,11 @@
 import express from "express";
 const roles = express.Router();
-import pool from "./PoolConnections.js";
+import PoolConnection from "./PoolConnection.js";
 
 // Retrieve all roles
 roles.get("/roles", async (req, res) => {
     try {
-        const result = await pool.query("SELECT * FROM roles");
+        const result = await PoolConnection.query("SELECT * FROM roles");
         res.json({ rows: result.rows });
     } catch (error) {
         console.error("Query error:", error);
@@ -18,7 +18,7 @@ roles.get("/getrole", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
-        const result = await pool.query("SELECT * FROM roles WHERE id=$1", [id1]);
+        const result = await PoolConnection.query("SELECT * FROM roles WHERE id=$1", [id1]);
         console.log(result);
         res.json({ rows: result.rows });
     } catch (error) {
@@ -32,7 +32,7 @@ roles.get("/delrole", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
-        const result = await pool.query("DELETE FROM roles WHERE id=$1", [id1]);
+        const result = await PoolConnection.query("DELETE FROM roles WHERE id=$1", [id1]);
         console.log(result);
         res.json({ ans: 1 });
     } catch (error) {
@@ -53,7 +53,7 @@ roles.post("/addrole", async (req, res) => {
 
         // Query to insert a new role
         const qry = "INSERT INTO roles (name, username, email, password, role) VALUES ($1, $2, $3, $4, $5)";
-        const result = await pool.query(qry, [name, username, email, password, roleStatus]);
+        const result = await PoolConnection.query(qry, [name, username, email, password, roleStatus]);
 
         console.log(result);
         res.json({ ans: 1 });
@@ -76,7 +76,7 @@ roles.post("/updateRole", async (req, res) => {
 
         // Update query for a role
         const qry = "UPDATE roles SET name=$1, username=$2, email=$3, password=$4, role=$5 WHERE id=$6";
-        const result = await pool.query(qry, [name, username, email, password, roleStatus, id]);
+        const result = await PoolConnection.query(qry, [name, username, email, password, roleStatus, id]);
 
         console.log(result);
         res.json({ ans: 1 });
