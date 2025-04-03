@@ -1,9 +1,9 @@
 import express from "express";
-const roles = express.Router();
+const Roles = express.Router();
 import PoolConnection from "./PoolConnection.js";
 
 // Retrieve all roles
-roles.get("/roles", async (req, res) => {
+Roles.get("/roles", async (req, res) => {
     try {
         const result = await PoolConnection.query("SELECT * FROM roles");
         res.json({ rows: result.rows });
@@ -14,7 +14,7 @@ roles.get("/roles", async (req, res) => {
 });
 
 // Retrieve a specific role by ID
-roles.get("/getrole", async (req, res) => {
+Roles.get("/getrole", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
@@ -28,7 +28,7 @@ roles.get("/getrole", async (req, res) => {
 });
 
 // Delete a specific role by ID
-roles.get("/delrole", async (req, res) => {
+Roles.get("/delrole", async (req, res) => {
     try {
         var id1 = req.query.id;
         console.log(id1);
@@ -42,7 +42,7 @@ roles.get("/delrole", async (req, res) => {
 });
 
 // Add a new role (POST request)
-roles.post("/addrole", async (req, res) => {
+Roles.post("/addrole", async (req, res) => {
     try {
         var role = req.body;
         var name = role.name;
@@ -64,7 +64,7 @@ roles.post("/addrole", async (req, res) => {
 });
 
 // Update an existing role's details - POST
-roles.post("/updateRole", async (req, res) => {
+Roles.post("/updateRole", async (req, res) => {
     try {
         var role = req.body;
         var id = role.id; // Role's ID to update
@@ -86,4 +86,4 @@ roles.post("/updateRole", async (req, res) => {
     }
 });
 
-export default roles;
+export default Roles;

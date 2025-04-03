@@ -1,7 +1,8 @@
 //Connects to the people table(Rugby Athletes)
 import express from "express";
-const People = express.Router();
 import PoolConnection from "./PoolConnection.js";
+const People = express.Router();
+
 
 // Retrieve all people
 People.get("/people", async (req, res) => {

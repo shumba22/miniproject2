@@ -4,15 +4,14 @@ dotenv.config(); // Load environment variables
 const { Pool } = pg;
 const PORT = process.env.PORT || 3000;
 // PostgreSQL connection pool
- const pool = new Pool({
+ const PoolConnection = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: {
     rejectUnauthorized: false, // Required for Neon DB
   },
 });
 //** Connection/
-pool
-  .connect()
+PoolConnection.connect()
   .then((client) => {
     console.log("Connected to Neon PostgreSQL database!");
     client.release();
