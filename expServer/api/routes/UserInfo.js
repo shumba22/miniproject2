@@ -4,9 +4,9 @@ const UserInfo = express.Router();
 import PoolConnection from "./PoolConnection.js";
 
 // Retrieve all user information
-UserInfo.get("/userinfo", async (req, res) => {
+UserInfo.get("/UserInfo", async (req, res) => {
     try {
-        const result = await PoolConnection.query("SELECT * FROM userinfo");
+        const result = await PoolConnection.query("SELECT * FROM UserInfo");
         res.json({ rows: result.rows });
     } catch (error) {
         console.error("Query error:", error);
