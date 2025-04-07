@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 //  route paths
-app.use("/user", UserInfo); // Route for managing user information
+app.use("/UserInfo", UserInfo); // Route for managing user information
 app.use("/roles", Roles);  // Route for managing roles
 app.use("/people",People);// Route for Managing the people(Athletes/Players)
 //app.use("/poolConnection", PoolConnection); //Database Connection*/
